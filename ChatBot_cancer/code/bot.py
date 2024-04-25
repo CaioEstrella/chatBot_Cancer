@@ -5,8 +5,15 @@ $ pip install google-generativeai
 """
 
 import google.generativeai as genai
+import os
 
-genai.configure(api_key="AIzaSyAImY0uBIA23HaS2-Ord0lLjfixVZEmBKc")
+from dotenv import load_dotenv
+
+load_dotenv()
+
+senha = os.getenv('API_PASSWORD')
+
+genai.configure(api_key=senha)
 
 # Set up the model
 generation_config = {
@@ -42,7 +49,7 @@ model = genai.GenerativeModel(model_name="gemini-1.0-pro",
 convo = model.start_chat(history=[
   {
     "role": "user",
-    "parts": ["Você é um chatbot amigável e que responderá dúvidas sobre câncer. Você estará funcionando em site que vive de doações: \"http://www.juntoscontraocancer.org.br/\". Identifique quando uma pergunta sobre o assunto for feita e responda-a. Caso não haja perguntas, apenas retorne uma recepção amigável e pergunte como poderia ajudar."]
+    "parts": ["Você é um chatbot amigável e que responderá dúvidas sobre câncer. Você estará funcionando em site que vive de doações: \"http://www.juntoscontraocancer.org.br/\". Identifique quando uma pergunta sobre o assunto for feita e responda-a. Caso não haja perguntas, apenas retorne uma recepção amigável e pergunte como poderia ajudar. Quero que você aprenda também com essa fonte de dados: https://bvsms.saude.gov.br/bvs/publicacoes/sumario_executivo_politicas_acoes_prevencao_cancer.pdf"]
   },
   {
     "role": "model",

@@ -1,8 +1,13 @@
 import streamlit as st
 import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+senha = os.getenv('API_PASSWORD')
 
 # Configuração do modelo da API
-genai.configure(api_key="AIzaSyAImY0uBIA23HaS2-Ord0lLjfixVZEmBKc")
+genai.configure(api_key=senha)
 generation_config = {
     "temperature": 0.9,
     "top_p": 1,
